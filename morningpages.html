@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>750 words</title>
+  <title>morning pages</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -10,7 +10,7 @@
       margin: auto;
       transition: background-color 0.3s ease;
     }
-    #wordCount {
+    #charCount {
       font-weight: bold;
       margin-bottom: 10px;
     }
@@ -30,22 +30,21 @@
 </head>
 <body>
 
-  <div id="wordCount">word count: 0</div>
-  <textarea id="journal" placeholder="start typing..."></textarea>
+  <div id="charCount">character count: 0/1000</div>
+  <textarea id="journal" placeholder="テキストを入力..."></textarea>
   <br>
   <button onclick="clearJournal()">self destruct</button>
 
   <script>
     const journal = document.getElementById('journal');
-    const wordCountDisplay = document.getElementById('wordCount');
+    const charCountDisplay = document.getElementById('charCount');
     const body = document.body;
 
     journal.addEventListener('input', () => {
-      const words = journal.value.trim().split(/\s+/).filter(word => word.length > 0);
-      const count = words.length;
-      wordCountDisplay.textContent = `word count: ${count}`;
+      const count = journal.value.length;
+      charCountDisplay.textContent = `character count: ${count}/1000`;
 
-      if (count >= 750) {
+      if (count >= 1000) {
         body.style.backgroundColor = '#d4f5d4'; 
       } else {
         body.style.backgroundColor = ''; 
@@ -54,7 +53,7 @@
 
     function clearJournal() {
       journal.value = '';
-      wordCountDisplay.textContent = 'word count: 0';
+      charCountDisplay.textContent = 'character count: 0/1000';
       body.style.backgroundColor = ''; 
     }
   </script>
