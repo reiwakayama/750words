@@ -25,6 +25,12 @@
       padding: 10px 15px;
       font-size: 16px;
     }
+    #completionMessage {
+      margin-top: 10px;
+      font-size: 18px;
+      color: #4CAF50;
+      display: none;
+    }
   </style>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📝</text></svg>">
 </head>
@@ -34,15 +40,17 @@
   <textarea id="journal" placeholder="テキストを入力..."></textarea>
   <br>
   <button onclick="clearJournal()">書き終わった</button>
+  <div id="completionMessage">おつかれ様(*˘︶˘*).｡.:*</div>
 
   <script>
     const journal = document.getElementById('journal');
     const charCountDisplay = document.getElementById('charCount');
     const body = document.body;
+    const completionMessage = document.getElementById('completionMessage');
 
     journal.addEventListener('input', () => {
       const count = journal.value.length;
-      charCountDisplay.textContent = `character count: ${count}/1000`;
+      charCountDisplay.textContent = `文字数: ${count}/1000`;
 
       if (count >= 1000) {
         body.style.backgroundColor = '#d4f5d4'; 
@@ -53,8 +61,14 @@
 
     function clearJournal() {
       journal.value = '';
-      charCountDisplay.textContent = 'character count: 0/1000';
-      body.style.backgroundColor = ''; 
+      charCountDisplay.textContent = '文字数: 0/1000';
+      body.style.backgroundColor = '';
+      completionMessage.style.display = 'block';
+      
+      // Hide the message after 3 seconds
+      setTimeout(() => {
+        completionMessage.style.display = 'none';
+      }, 3000);
     }
   </script>
 
